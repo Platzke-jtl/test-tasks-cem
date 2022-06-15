@@ -9,7 +9,8 @@ $cache = new Caching();
 if ($cache->has("departure"))
 {
     $singleDeparture = $cache->get("departure");
-    echo nl2br($singleDeparture);
+    echo nl2br($singleDeparture . " This is from cache!");
+
 } else {
     $departures = "departures.txt";
     $file = fopen($departures, 'r');
