@@ -23,11 +23,13 @@ class Caching implements CacheInterface {
     /**
      * @inheritDoc
      */
-    public function set(string $key, mixed $value){
+    public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
+    {
         $cachePath = "./Cache/" . $key . "txt";
         $file = fopen($cachePath, 'w');
         fwrite($file, $value);
         fclose($file);
+        return file_exists($cachePath);
     }
 
     /**
@@ -75,7 +77,8 @@ class Caching implements CacheInterface {
     /**
      * @inheritDoc
      */
-    public function setMultiple(iterable $values, null $){
+    public function setMultiple(iterable $values, null|int|\DateInterval $ttl = null): bool
+    {
         // TODO: Implement setMultiple() method.
     }
 }
