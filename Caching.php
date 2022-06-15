@@ -13,7 +13,7 @@ class Caching implements CacheInterface {
      */
     public function get(string $key, mixed $default = null): mixed
     {
-        $cachePath = "./Cache/" . $key . "txt";
+        $cachePath = "./Cache/" . $key . ".txt";
         $file = fopen($cachePath, 'r');
         $content = fread($file, filesize($cachePath));
         fclose($file);
@@ -25,7 +25,7 @@ class Caching implements CacheInterface {
      */
     public function set(string $key, mixed $value, null|int|\DateInterval $ttl = null): bool
     {
-        $cachePath = "./Cache/" . $key . "txt";
+        $cachePath = "./Cache/" . $key . ".txt";
         $file = fopen($cachePath, 'w');
         fwrite($file, $value);
         fclose($file);
@@ -37,7 +37,7 @@ class Caching implements CacheInterface {
      */
     public function has(string $key): bool
     {
-        $cachePath = "./Cache/" . $key . "txt";
+        $cachePath = "./Cache/" . $key . ".txt";
         return file_exists($cachePath);
     }
 
